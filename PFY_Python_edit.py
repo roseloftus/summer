@@ -17,7 +17,10 @@ import os.path
 
 #user input for centroids and ranges to be used in ev
 ev = np.zeros((1,2))
-print("The following loop will ask how many samples you have." +
+help = input("For instructions on how to use this program, type 'yes'." +
+             "\nOtherwise, type 'no': ")
+if help.lower() == 'yes': 
+      print("The following loop will ask how many samples you have." +
       "\nThen you will enter the centroids and energy ranges for each sample." +
       "\nPress 'Enter' after each input to continue." +
       "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
@@ -27,21 +30,30 @@ restart = 'back'
 while restart == 'back':
 
   #beginning of for loop to find out how many samples will be input
+  if help.lower() == 'yes':
+            print("The first step is entering the number of samples" +
+                  "\nYou have. This is the same as the number of peaks")
   times = int(input("How many samples will you input?: "))
   print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
   for t in range(times):
 
       #get centroid (ele) for each element
+      if help.lower() == 'yes':
+            print("Now to enter the centroid for each of these peaks." +
+                  "\nThese values must be between 0 and 4000 eV")
       ele = float(input("Enter the centroid for the element: "))
 
       #get energy range (e_rng) for each element
+      if help.lower() == 'yes':
+            print("Now for the energy ranges." +
+                  "\nThis is the range of error for each peak")
       e_rng = float(input("Enter the energy range for the element: "))
 
       #make sure user gives reasonable input for centroid
       if ele <= 0 or ele >= 4000:
         print("Centroid must be between 0 and 4000!")
-        ele = float(input("Re-enter the centroid for the first element: "))
+        ele = float(input("Re-enter the centroid for the element: "))
 
       #append centroid and energy range to ev
       else:
